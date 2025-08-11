@@ -3,6 +3,7 @@ package com.imeja.surveilance.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.imeja.surveilance.cases.child.GroupFragment
 import com.imeja.surveilance.models.OutputGroup
 
 class GroupPagerAdapter(

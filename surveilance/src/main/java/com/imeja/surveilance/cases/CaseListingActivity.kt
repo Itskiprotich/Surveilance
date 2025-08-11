@@ -120,19 +120,14 @@ class CaseListingActivity : AppCompatActivity() {
             when (slug) {
                 "social-listening-and-rumor-tracking-tool",
                 "vl-case-information",
-                "moh-505-reporting-form",
+                "moh-505-reporting-form", "measles-case-information",
                 "afp-case-information" -> {
                     startActivity(Intent(this@CaseListingActivity, SummarizedActivity::class.java))
                 }
 
                 else -> {
 
-                    startActivity(
-                        Intent(
-                            this@CaseListingActivity,
-                            FullCaseDetailsActivity::class.java
-                        )
-                    )
+
                 }
             }
         } else {

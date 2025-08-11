@@ -4,31 +4,31 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.fhir.FhirEngine
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
-import com.icl.surveillance.adapters.GroupPagerAdapter
-import com.icl.surveillance.databinding.ActivitySummarizedBinding
-import com.icl.surveillance.fhir.FhirApplication
-import com.icl.surveillance.models.ChildItem
-import com.icl.surveillance.models.OutputGroup
-import com.icl.surveillance.models.OutputItem
-import com.icl.surveillance.models.QuestionnaireItem
-import com.icl.surveillance.ui.patients.custom.ContactInformationFragment
-import com.icl.surveillance.ui.patients.custom.ITDLabFragment
-import com.icl.surveillance.ui.patients.custom.LocalLabFragment
-import com.icl.surveillance.ui.patients.custom.RegionalLabFragment
-import com.icl.surveillance.ui.patients.custom.VlFollowupFragment
-import com.icl.surveillance.ui.patients.custom.VlLabFragment
-import com.icl.surveillance.ui.patients.custom.VlTreatmentFragment
-import com.icl.surveillance.ui.patients.data.LabResultsFragment
-import com.icl.surveillance.ui.patients.data.RegionalLabResultsFragment
-import com.icl.surveillance.utils.FormatterClass
+import com.imeja.surveilance.cases.child.LabResultsFragment
+import com.imeja.surveilance.cases.child.RegionalLabResultsFragment
+import com.imeja.surveilance.FhirApplication
+import com.imeja.surveilance.adapters.GroupPagerAdapter
+import com.imeja.surveilance.cases.child.ContactInformationFragment
+import com.imeja.surveilance.cases.child.ITDLabFragment
+import com.imeja.surveilance.cases.child.LocalLabFragment
+import com.imeja.surveilance.cases.child.RegionalLabFragment
+import com.imeja.surveilance.cases.child.VlFollowupFragment
+import com.imeja.surveilance.cases.child.VlLabFragment
+import com.imeja.surveilance.cases.child.VlTreatmentFragment
+import com.imeja.surveilance.databinding.ActivitySummarizedBinding
+import com.imeja.surveilance.helpers.FormatterClass
+import com.imeja.surveilance.models.ChildItem
+import com.imeja.surveilance.models.OutputGroup
+import com.imeja.surveilance.models.OutputItem
+import com.imeja.surveilance.models.QuestionnaireItem
 import com.imeja.surveilance.viewholders.ClientDetailsViewModel
 import com.imeja.surveilance.viewholders.PatientDetailsViewModelFactory
+import com.imeja.surveilance.viewmodels.PatientListViewModel
 import java.time.LocalDate
 import java.time.Period
 import java.time.ZonedDateTime
@@ -42,7 +42,7 @@ class SummarizedActivity : AppCompatActivity() {
     private lateinit var patientDetailsViewModel: ClientDetailsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
         binding = ActivitySummarizedBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
@@ -72,7 +72,6 @@ class SummarizedActivity : AppCompatActivity() {
 
             if (currentCase != null) {
                 val slug = currentCase.toSlug()
-                println("Dealing with the current Slug $slug")
                 val key = when (slug) {
                     "rcce" -> {
                         val encounterQuestionnaire = FormatterClass().getSharedPref(

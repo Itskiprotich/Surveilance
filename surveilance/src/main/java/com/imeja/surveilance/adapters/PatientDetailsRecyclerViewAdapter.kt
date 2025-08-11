@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.imeja.surveilance.PatientDetailItemViewHolder
 import com.imeja.surveilance.databinding.CaseDetailBinding
+import com.imeja.surveilance.viewholders.PatientDetailItemViewHolder
 import com.imeja.surveilance.viewmodels.PatientListViewModel
 
 class PatientDetailsRecyclerViewAdapter(

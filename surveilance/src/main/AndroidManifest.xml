@@ -58,11 +58,7 @@
             android:label="New Case"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".cases.FullCaseDetailsActivity"
-            android:exported="false"
-            android:label="Case Summary "
-            android:launchMode="singleTop" />
+
         <activity
             android:name=".cases.CaseDetailsActivity"
             android:exported="false"

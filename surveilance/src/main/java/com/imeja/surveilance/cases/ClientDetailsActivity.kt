@@ -5,9 +5,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.fhir.FhirEngine
+import com.imeja.surveilance.AddPatientFragment.Companion.QUESTIONNAIRE_FILE_PATH_KEY
+import com.imeja.surveilance.FhirApplication
+import com.imeja.surveilance.adapters.PatientDetailsRecyclerViewAdapter
 import com.imeja.surveilance.databinding.ActivityClientDetailsBinding
 import com.imeja.surveilance.helpers.FormatterClass
 import com.imeja.surveilance.viewholders.ClientDetailsViewModel
+import com.imeja.surveilance.viewholders.PatientDetailsViewModelFactory
+import com.imeja.surveilance.viewmodels.PatientListViewModel
 
 class ClientDetailsActivity : AppCompatActivity() {
     private lateinit var binding:
