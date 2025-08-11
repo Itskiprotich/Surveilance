@@ -2,12 +2,13 @@ plugins {
   id(Plugins.BuildPlugins.application)
   id(Plugins.BuildPlugins.kotlinAndroid)
   id(Plugins.BuildPlugins.navSafeArgs)
+    alias(libs.plugins.kotlin.android)
 }
 
 configureRuler()
 
 android {
-  namespace = "com.google.android.fhir.surveilance"
+  namespace = "com.imeja.surveilance"
   compileSdk = Sdk.COMPILE_SDK
   defaultConfig {
     applicationId = Releases.Demo.applicationId
@@ -66,4 +67,13 @@ dependencies {
   implementation(project(":engine"))
 
   testImplementation(libs.junit)
+
+  implementation(libs.kotlinx.serialization.json)
+  implementation("com.squareup.retrofit2:retrofit:3.0.0")
+  implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+  implementation("com.google.android.play:app-update:2.1.0")
+  implementation("com.google.android.play:app-update-ktx:2.1.0")
+  implementation("com.google.android.gms:play-services-location:21.3.0")
+  implementation("com.squareup.okhttp3:logging-interceptor:5.1.0")
+  implementation("com.squareup.okhttp3:okhttp:5.1.0")
 }

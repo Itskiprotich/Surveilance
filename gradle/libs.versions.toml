@@ -39,6 +39,7 @@ material = "1.9.0"
 opencds-cqf-fhir = "3.8.0"
 truth = "1.1.5"
 uiautomator = "2.3.0"
+kotlin-version = "2.1.20"
 
 [libraries]
 android-fhir-common = { module = "com.google.android.fhir:common", version.ref = "android-fhir-common" }
@@ -112,3 +113,4 @@ truth = { module = "com.google.truth:truth", version.ref = "truth" }
 androidx-tracing = ["androidx-tracing-tracing", "androidx-tracing-tracing-android", "androidx-tracing-tracing-ktx"]
 
 [plugins]
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }

@@ -55,6 +55,8 @@ include(":document")
 
 include(":demo")
 
+include(":surveilance")
+
 include(":engine")
 
 include(":knowledge")

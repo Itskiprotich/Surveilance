@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!--
+<?xml version="1.0" encoding="utf-8" ?><!--
  Copyright 2020 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -91,5 +90,19 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dashboard_cardview_textcolor">#4D4D4D</color>
+
+
+    <color name="purple_200">#007AFF</color>
+    <color name="purple_500">#007AFF</color>
+    <color name="purple_700">#007AFF</color>
+    <color name="teal_200">#375713</color>
+    <color name="teal_700">#1E6821</color>
+
+    <color name="gray">#BDBDBD</color>
+    <color name="red">#FA0C0C</color>
+    <color name="discarded">#8DFF8D</color>
+    <color name="compatible">#007AFF</color>
+    <color name="pending">#C1BCAE</color>
+    <color name="blue">#007AFF</color>
 
 </resources>

@@ -14,71 +14,144 @@
  limitations under the License.
 -->
 <resources>
-  <string name="app_name">FHIR Engine Sample App</string>
+    <string name="app_name">NPHIIS</string>
 
-  <string name="title_patient_list">Registered Patients</string>
-  <string name="title_patient_detail">SamplePatient Detail</string>
+    <string name="title_patient_list">Registered Patients</string>
+    <string name="title_patient_detail">SamplePatient Detail</string>
 
-  <string name="menu_about">About Fhir Engine</string>
-  <string name="menu_sync_resources">Sync Resources</string>
-  <string name="menu_patient_edit">@string/edit_patient</string>
+    <string name="menu_about">About Fhir Engine</string>
+    <string name="menu_sync_resources">Sync Resources</string>
+    <string name="menu_patient_edit">@string/edit_patient</string>
 
-  <!-- For display observations in brief, for a patient -->
-  <string name="observation_brief_text">%1$s: %2$s\nEffective: %3$s</string>
-  <string
-        name="cancel_questionnaire_message"
-    >Are you sure you want to discard the answers?</string>
-  <string name="patient_id">Id</string>
-  <string name="patient_name">Name</string>
-  <string name="patient_gender">Gender</string>
-  <string name="patient_dob">DOB</string>
-  <string name="patient_phone_number">Phone Number</string>
-  <string name="patient_city">City</string>
-  <string name="patient_country">Country</string>
-  <string name="patient_is_active">Is Active</string>
-  <string name="patient_property_mobile">Mobile Number</string>
-  <string name="patient_property_id">ID Number</string>
-  <string name="patient_property_address">Address</string>
-  <string name="patient_property_dob">Date of Birth</string>
-  <string name="patient_property_gender">Gender</string>
-  <string name="add_patient">Add Patient</string>
-  <string name="edit_patient">Edit Patient</string>
-  <string name="submit">Submit</string>
-  <string name="message_syncing">Syncing\u2026</string>
+    <!-- For display observations in brief, for a patient -->
+    <string name="observation_brief_text">%1$s: %2$s\nEffective: %3$s</string>
+    <string name="cancel_questionnaire_message">Are you sure you want to discard the answers?</string>
+    <string name="patient_id">Id</string>
+    <string name="patient_name">Name</string>
+    <string name="patient_gender">Gender</string>
+    <string name="patient_dob">DOB</string>
+    <string name="patient_phone_number">Phone Number</string>
+    <string name="patient_city">City</string>
+    <string name="patient_country">Country</string>
+    <string name="patient_is_active">Is Active</string>
+    <string name="patient_property_mobile">Mobile Number</string>
+    <string name="patient_property_id">ID Number</string>
+    <string name="patient_property_address">Address</string>
+    <string name="patient_property_dob">Date of Birth</string>
+    <string name="patient_property_gender">Gender</string>
+    <string name="add_patient">Add Patient</string>
+    <string name="edit_patient">Edit Patient</string>
+    <string name="submit">Submit</string>
+    <string name="message_syncing">Syncing\u2026</string>
+    <string name="tally">Summary Sheet</string>
+    <string name="supervisor">Supervisor Checklist</string>
+    <string name="message_patient_updated">Patient is updated.</string>
+    <string name="inputs_missing">Inputs are missing.</string>
+    <string name="resources_saved">Resources are saved.</string>
+    <string name="response_received">questionnaire response is received.</string>
+    <string name="html_text">Current status: <font color="#ddd">UNKNOWN</font></string>
+    <string name="header_observation">Observations</string>
+    <string name="header_conditions">Conditions</string>
+    <string name="message_no_datetime">No effective DateTime</string>
+    <string name="complete_survey">Complete Survey</string>
+    <string name="risk_status">Current status: </string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="none">none</string>
+    <string name="description_status">Status</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="sync_menu">Sync</string>
+    <string name="last_sync">Last sync</string>
+    <string name="syncing">Syncing</string>
+    <string name="sync">One-time sync</string>
+    <string name="last_sync_timestamp">Last sync time: %1$s</string>
+    <string name="last_sync_timestamp_na">Last sync time: Not available</string>
+    <string name="current_status">Current sync status: %1$s</string>
+    <string name="last_sync_status">Last sync status: %1$s</string>
+    <string name="last_sync_status_na">Last sync status: Not available</string>
+    <string name="periodic_sync">Periodic sync</string>
+    <string name="crud_operations">CRUD operations</string>
+    <string name="create">Create</string>
+    <string name="read">Read</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="search_patient_by">Search Patient by</string>
+    <string name="given_name">Given name</string>
+    <string name="family_name">Family name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
-  <string name="message_patient_updated">Patient is updated.</string>
-  <string name="inputs_missing">Inputs are missing.</string>
-  <string name="resources_saved">Resources are saved.</string>
-  <string name="response_received">questionnaire response is received.</string>
-  <string name="html_text">Current status: <font
-            color="#ddd"
-        >UNKNOWN</font></string>
-  <string name="header_observation">Observations</string>
-  <string name="header_conditions">Conditions</string>
-  <string name="message_no_datetime">No effective DateTime</string>
-  <string name="complete_survey">Complete Survey</string>
-  <string name="risk_status">Current status: </string>
-  <string name="unknown">UNKNOWN</string>
-  <string name="none">none</string>
-  <string name="description_status">Status</string>
-  <string name="open">Open</string>
-  <string name="close">Close</string>
-  <string name="sync_menu">Sync</string>
-  <string name="last_sync">Last sync</string>
-  <string name="syncing">Syncing</string>
-  <string name="sync">One-time sync</string>
-  <string name="last_sync_timestamp">Last sync time: %1$s</string>
-  <string name="last_sync_timestamp_na">Last sync time: Not available</string>
-  <string name="current_status">Current sync status: %1$s</string>
-  <string name="last_sync_status">Last sync status: %1$s</string>
-  <string name="last_sync_status_na">Last sync status: Not available</string>
-  <string name="periodic_sync">Periodic sync</string>
-  <string name="crud_operations">CRUD operations</string>
-  <string name="create">Create</string>
-  <string name="read">Read</string>
-  <string name="update">Update</string>
-  <string name="delete">Delete</string>
-  <string name="search_patient_by">Search Patient by</string>
-  <string name="given_name">Given name</string>
-  <string name="family_name">Family name</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Cases List</string>
+    <string name="title_notifications">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="add_client">Add Case</string>
+    <string name="new_case_description">New Case</string>
+    <string name="moh502">Immediate Notifiable Diseases Reporting Tool</string>
+    <string name="contact_tracing">Contact Tracing Forms</string>
+    <string name="moh505">IDSR Weekly Epidemic Monitoring Tool</string>
+    <string name="social_form">Social Investigation Form</string>
+    <string name="rumor_tracking">Social Listening and Rumor Tracking Tool</string>
+    <string name="hello">Hello,</string>
+    <string name="john_mdoe">John Mdoe</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="base_url">https://dsrkeycloak.intellisoftkenya.com/auth/</string>
+    <string name="lab_results_not_captured">Lab results not captured</string>
+
+    <string name="epid">Search for case</string>
+    <string name="please_select_an_option_below_to_proceed">Please select an option below to proceed.</string>
+    <string name="case_selection">Case Selection!</string>
+    <string name="select_reported_disease">Select reported disease</string>
+    <string name="measles">Measles</string>
+    <string name="afp">AFP</string>
+    <string name="vl_forms">Visceral Leishmaniasis (Kala-azar) Case Management Form</string>
+    <string name="monthly">IDSR Monthly Reporting Tool</string>
+    <string name="no_stool_specimen_results_available">No Stool specimen results available</string>
+    <string name="add_form">Add Form</string>
+    <string name="no_final_laboratory_results_available">No Final Laboratory Results available</string>
+    <string name="no_contact_information_available">No Contact Information available</string>
+    <string name="no_treatment_information_available">No Treatment information available</string>
+    <string name="no_follow_up_information_available">No Follow Up information available</string>
+    <string name="national_public_health_nintelligence_ninformation_nsystem_nphiis">National Public Health\nIntelligence\nInformation\nSystem (NPHIIS)</string>
+    <string name="notifiable">Notifiable Diseases</string>
+    <string name="mass">Mass Immunization</string>
+    <string name="case_management">Case Management</string>
+    <string name="social">RCCE Tools</string>
+    <string name="surveys">Assessments/Surveys</string>
+    <string name="monthly_reported">Monthly Reportable\nDiseases</string>
+    <string name="weekly_reported">Weekly Reportable\nDiseases</string>
+    <string name="immediate_reportable">Immediate\nReportable Diseases</string>
+    <string name="polio">Polio Immunization (OPV)</string>
+    <string name="measles_imm">Measles Immunization</string>
+    <string name="cholera">Cholera Immunization</string>
+    <string name="social_inv">Social Investigation Form</string>
+    <string name="social_inv_parent">RCCE Tools</string>
+    <string name="rumor_tool">Rumor Tracking Tool</string>
+    <string name="vl_form">Visceral Leishmaniasis Case Management Form</string>
+    <string name="no_itd_laboratory_results_available">No ITD Lab Information available</string>
+    <string name="title_activity_landing">LandingActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="moh505_form">MOH 505</string>
+    <string name="county_sub_county">County/Sub County Coordination Assessment</string>
+    <string name="community_tool">Community Questionnaire</string>
+    <string name="mpox">Mpox Immunization</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 </resources>

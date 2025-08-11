@@ -17,6 +17,9 @@ buildscript {
     classpath(Plugins.kotlinSerializationPlugin)
   }
 }
+plugins {
+    alias(libs.plugins.kotlin.android) apply false
+}
 
 allprojects {
   repositories {

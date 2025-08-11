@@ -9,7 +9,7 @@
 
   <fragment
         android:id="@+id/home_fragment"
-        android:name="com.google.android.fhir.surveilance.HomeFragment"
+        android:name="com.imeja.surveilance.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home"
     >
@@ -34,7 +34,7 @@
   <fragment
         android:id="@+id/patient_list"
         android:label="Patient List"
-        android:name="com.google.android.fhir.surveilance.PatientListFragment"
+        android:name="com.imeja.surveilance.PatientListFragment"
         tools:layout="@layout/patient_list_view"
     >
     <action
@@ -50,7 +50,7 @@
   <fragment
         android:id="@+id/patient_details"
         android:label="Patient Details"
-        android:name="com.google.android.fhir.surveilance.PatientDetailsFragment"
+        android:name="com.imeja.surveilance.PatientDetailsFragment"
         tools:layout="@layout/patient_detail"
     >
         <action
@@ -67,7 +67,7 @@
   <fragment
         android:id="@+id/screenerEncounterFragment"
         android:label="Screen Encounter"
-        android:name="com.google.android.fhir.surveilance.ScreenerFragment"
+        android:name="com.imeja.surveilance.ScreenerFragment"
         tools:layout="@layout/screener_encounter_fragment"
     >
     <argument android:name="patient_id" app:argType="string" />
@@ -75,14 +75,14 @@
   <fragment
         android:id="@+id/addPatientFragment"
         android:label="@string/add_patient"
-        android:name="com.google.android.fhir.surveilance.AddPatientFragment"
+        android:name="com.imeja.surveilance.AddPatientFragment"
         tools:layout="@layout/add_patient_fragment"
     />
 
     <fragment
         android:id="@+id/editPatientFragment"
         android:label="Edit Patient"
-        android:name="com.google.android.fhir.surveilance.EditPatientFragment"
+        android:name="com.imeja.surveilance.EditPatientFragment"
         tools:layout="@layout/add_patient_fragment"
     >
         <argument android:name="patient_id" app:argType="string" />
@@ -90,20 +90,20 @@
 
   <fragment
         android:id="@+id/syncFragment"
-        android:name="com.google.android.fhir.surveilance.SyncFragment"
+        android:name="com.imeja.surveilance.SyncFragment"
         android:label="fragment_manual_sync"
         tools:layout="@layout/sync"
     />
   <fragment
         android:id="@+id/crudOperationFragment"
-        android:name="com.google.android.fhir.surveilance.CrudOperationFragment"
+        android:name="com.imeja.surveilance.CrudOperationFragment"
         android:label="fragment_layout"
         tools:layout="@layout/fragment_crud_layout"
     />
 
   <fragment
         android:id="@+id/periodicSyncFragment"
-        android:name="com.google.android.fhir.surveilance.PeriodicSyncFragment"
+        android:name="com.imeja.surveilance.PeriodicSyncFragment"
         android:label="fragment_periodic_sync"
         tools:layout="@layout/periodic_sync"
     />
