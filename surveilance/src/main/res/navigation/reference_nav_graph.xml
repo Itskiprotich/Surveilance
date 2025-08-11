@@ -1,110 +1,45 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/reference_nav_graph"
-    app:startDestination="@id/home_fragment"
->
+    app:startDestination="@id/home_fragment">
 
-  <fragment
+    <fragment
         android:id="@+id/home_fragment"
         android:name="com.imeja.surveilance.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"
-    >
-    <action
-            android:id="@+id/action_home_fragment_to_patient_list"
-            app:destination="@id/patient_list"
-        />
-    <action
-            android:id="@+id/action_home_fragment_to_sync_fragment"
-            app:destination="@id/syncFragment"
-        />
-    <action
-            android:id="@+id/action_home_fragment_to_periodic_sync_fragment"
-            app:destination="@id/periodicSyncFragment"
-        />
-    <action
-            android:id="@+id/action_home_fragment_to_crud_operation_fragment"
-            app:destination="@id/crudOperationFragment"
-        />
-  </fragment>
+        tools:layout="@layout/fragment_home">
 
-  <fragment
-        android:id="@+id/patient_list"
-        android:label="Patient List"
-        android:name="com.imeja.surveilance.PatientListFragment"
-        tools:layout="@layout/patient_list_view"
-    >
-    <action
-            android:id="@+id/navigate_to_product_detail"
-            app:destination="@id/patient_details"
-        />
-    <action
-            android:id="@+id/action_patient_list_to_addPatientFragment"
-            app:destination="@id/addPatientFragment"
-        />
-  </fragment>
-
-  <fragment
-        android:id="@+id/patient_details"
-        android:label="Patient Details"
-        android:name="com.imeja.surveilance.PatientDetailsFragment"
-        tools:layout="@layout/patient_detail"
-    >
         <action
-            android:id="@+id/navigate_to_edit_patient"
-            app:destination="@id/editPatientFragment"
-        />
-        <action
-            android:id="@+id/action_patient_details_to_screenEncounterFragment"
-            app:destination="@id/screenerEncounterFragment"
-        />
-    <argument android:name="patient_id" app:argType="string" />
-  </fragment>
-
-  <fragment
-        android:id="@+id/screenerEncounterFragment"
-        android:label="Screen Encounter"
-        android:name="com.imeja.surveilance.ScreenerFragment"
-        tools:layout="@layout/screener_encounter_fragment"
-    >
-    <argument android:name="patient_id" app:argType="string" />
-  </fragment>
-  <fragment
-        android:id="@+id/addPatientFragment"
-        android:label="@string/add_patient"
-        android:name="com.imeja.surveilance.AddPatientFragment"
-        tools:layout="@layout/add_patient_fragment"
-    />
-
-    <fragment
-        android:id="@+id/editPatientFragment"
-        android:label="Edit Patient"
-        android:name="com.imeja.surveilance.EditPatientFragment"
-        tools:layout="@layout/add_patient_fragment"
-    >
-        <argument android:name="patient_id" app:argType="string" />
+            android:id="@+id/action_home_fragment_to_childFragment"
+            app:destination="@id/childFragment" />
     </fragment>
 
-  <fragment
-        android:id="@+id/syncFragment"
-        android:name="com.imeja.surveilance.SyncFragment"
-        android:label="fragment_manual_sync"
-        tools:layout="@layout/sync"
-    />
-  <fragment
-        android:id="@+id/crudOperationFragment"
-        android:name="com.imeja.surveilance.CrudOperationFragment"
-        android:label="fragment_layout"
-        tools:layout="@layout/fragment_crud_layout"
-    />
+    <fragment
+        android:id="@+id/childFragment"
+        android:name="com.imeja.surveilance.home.ChildFragment"
+        android:label="Child Fragment"
+        tools:layout="@layout/fragment_child" >
+        <action
+            android:id="@+id/action_childFragment_to_singleFragment"
+            app:destination="@id/singleFragment" />
+    </fragment>
 
-  <fragment
-        android:id="@+id/periodicSyncFragment"
-        android:name="com.imeja.surveilance.PeriodicSyncFragment"
-        android:label="fragment_periodic_sync"
-        tools:layout="@layout/periodic_sync"
-    />
+
+    <fragment
+        android:id="@+id/selectionFragment"
+        android:name="com.imeja.surveilance.home.SelectionFragment"
+        android:label="Selection"
+        tools:layout="@layout/fragment_selection" />
+    <fragment
+        android:id="@+id/singleFragment"
+        android:name="com.imeja.surveilance.CrudOperationFragment"
+        android:label="Single Fragment"
+        tools:layout="@layout/fragment_single" >
+        <action
+            android:id="@+id/action_singleFragment_to_selectionFragment"
+            app:destination="@id/selectionFragment" />
+    </fragment>
+
 </navigation>

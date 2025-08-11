@@ -154,7 +154,7 @@
                     android:layout_marginHorizontal="@dimen/new_patient_horizontal_margin"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@string/sync"
+                    android:text="Mass Immunization"
                     android:textAppearance="?textAppearanceTitleLarge"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dashboard_text_fontSize" />

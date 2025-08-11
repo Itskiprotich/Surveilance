@@ -3,9 +3,21 @@ package com.imeja.surveilance.home
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.imeja.surveilance.AddPatientFragment.Companion.QUESTIONNAIRE_FILE_PATH_KEY
 import com.imeja.surveilance.R
+import com.imeja.surveilance.adapters.DiseasesRecyclerViewAdapter
+import com.imeja.surveilance.databinding.FragmentChildBinding
+import com.imeja.surveilance.helpers.FormatterClass
+import com.imeja.surveilance.viewmodels.HomeViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +29,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ChildFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
 class ChildFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -30,12 +43,239 @@ class ChildFragment : Fragment() {
         }
     }
 
+    private var _binding: FragmentChildBinding? = null
+
+    private val viewModel: HomeViewModel by viewModels()
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding
+        get() = _binding!!
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_child, container, false)
+        _binding = FragmentChildBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var titleName = FormatterClass().getSharedPref("title", requireContext())
+        var stage = FormatterClass().getSharedPref("stage", requireContext())
+
+        val activity = requireActivity() as AppCompatActivity
+        activity.supportActionBar?.apply {
+            title = ""
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+
+        // Let the Fragment receive menu callbacks
+        setHasOptionsMenu(true)
+
+        binding.apply {
+            titleName = when (titleName) {
+                "Immediate Notifiable Diseases Reporting Tool" -> "Integrated Case Based Surveillance form"
+                else -> titleName
+            }
+            greeting.text = titleName?.replace("\n", " ")
+        }
+        val adapter =
+            DiseasesRecyclerViewAdapter(::onItemClick).apply {
+                if (stage != null) {
+                    when (stage) {
+                        "0" -> {
+                            submitList(viewModel.getNotifiableList())
+                        }
+
+                        "1" -> {
+                            submitList(viewModel.getMassList())
+                        }
+
+                        "2" -> {
+                            submitList(viewModel.getCaseList())
+                        }
+
+                        "3" -> {
+                            submitList(viewModel.getSocialList())
+                        }
+
+
+                        "100" -> {
+                            submitList(viewModel.getMOHList())
+                        }
+
+                        else -> {
+                            println("Coming soon ....")
+                        }
+                    }
+
+                }
+
+            }
+        val recyclerView = requireView().findViewById<RecyclerView>(R.id.sdcLayoutsRecyclerView)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
+    }
+
+    private fun onItemClick(layout: HomeViewModel.Diseases) {
+        val title = context?.getString(layout.textId) ?: ""
+        println("Child Clicked ***** ${layout.level}")
+        when (layout.level) {
+            0 -> {
+                val bundle =
+                    Bundle().apply { putString(QUESTIONNAIRE_FILE_PATH_KEY, "add-case.json") }
+
+                FormatterClass()
+                    .saveSharedPref(
+                        "childTitle", title,
+                        requireContext()
+                    )
+                FormatterClass()
+                    .saveSharedPref(
+                        "childStage", "6",
+                        requireContext()
+                    )
+
+                findNavController().navigate(
+                    R.id.action_childFragment_to_singleFragment,
+                    bundle
+                )
+            }
+
+            13 -> {
+                val bundle =
+                    Bundle().apply { putString(QUESTIONNAIRE_FILE_PATH_KEY, "add-case.json") }
+
+                FormatterClass()
+                    .saveSharedPref(
+                        "childTitle", title,
+                        requireContext()
+                    )
+                FormatterClass()
+                    .saveSharedPref(
+                        "childStage", "7",
+                        requireContext()
+                    )
+
+                findNavController().navigate(
+                    R.id.action_childFragment_to_singleFragment,
+                    bundle
+                )
+            }
+
+            1 -> {
+                val bundle =
+                    Bundle().apply { putString(QUESTIONNAIRE_FILE_PATH_KEY, "moh505.json") }
+
+                FormatterClass()
+                    .saveSharedPref(
+                        "childTitle", title,
+                        requireContext()
+                    )
+                FormatterClass()
+                    .saveSharedPref(
+                        "childStage", "100",
+                        requireContext()
+                    )
+
+                findNavController().navigate(
+                    R.id.action_childFragment_to_singleFragment,
+                    bundle
+                )
+            }
+
+            30 -> {
+
+                val bundle =
+                    Bundle().apply { putString(QUESTIONNAIRE_FILE_PATH_KEY, "add-case.json") }
+
+                FormatterClass()
+                    .saveSharedPref(
+                        "grandTitle", "Social Listening and Rumor Tracking Tool",
+                        requireContext()
+                    )
+                FormatterClass()
+                    .saveSharedPref(
+                        "childStage", "6",
+                        requireContext()
+                    )
+
+                findNavController().navigate(
+                    R.id.action_childFragment_to_singleFragment,
+                    bundle
+                )
+            }
+
+            31 -> {
+
+                val bundle =
+                    Bundle().apply { putString(QUESTIONNAIRE_FILE_PATH_KEY, "add-case.json") }
+
+                FormatterClass()
+                    .saveSharedPref(
+                        "grandTitle", "Social Investigation Form",
+                        requireContext()
+                    )
+                FormatterClass()
+                    .saveSharedPref(
+                        "childStage", "60",
+                        requireContext()
+                    )
+
+                findNavController().navigate(
+                    R.id.action_childFragment_to_singleFragment,
+                    bundle
+                )
+            }
+
+            20 -> {
+                val bundle =
+                    Bundle().apply { putString(QUESTIONNAIRE_FILE_PATH_KEY, "add-case.json") }
+
+                FormatterClass()
+                    .saveSharedPref(
+                        "grandTitle", title,
+                        requireContext()
+                    )
+                FormatterClass()
+                    .saveSharedPref(
+                        "childStage", "6",
+                        requireContext()
+                    )
+
+                findNavController().navigate(
+                    R.id.action_childFragment_to_singleFragment,
+                    bundle
+                )
+            }
+
+            else -> {
+
+                Toast.makeText(requireContext(), "Coming soon ....", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                // Handle the back button in the toolbar
+                requireActivity().onBackPressedDispatcher.onBackPressed()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     companion object {
