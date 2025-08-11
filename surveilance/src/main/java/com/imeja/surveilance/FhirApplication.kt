@@ -29,6 +29,7 @@ import com.google.android.fhir.datacapture.XFhirQueryResolver
 import com.google.android.fhir.search.search
 import com.google.android.fhir.sync.remote.HttpLogger
 import com.imeja.surveilance.data.DemoDataStore
+import com.imeja.surveilance.helpers.ItemViewHolderFactoryMatchersProviderFactory
 import timber.log.Timber
 
 class FhirApplication : Application(), DataCaptureConfig.Provider {
@@ -46,7 +47,7 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
         }
         FhirEngineProvider.init(
             FhirEngineConfiguration(
-                enableEncryptionIfSupported = true,
+                enableEncryptionIfSupported = false,
                 RECREATE_AT_OPEN,
                 ServerConfiguration(
                     "https://dsrfhir.intellisoftkenya.com/hapi/fhir/",
@@ -66,6 +67,8 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
         dataCaptureConfig =
             DataCaptureConfig().apply {
                 urlResolver = ReferenceUrlResolver(this@FhirApplication as Context)
+                questionnaireItemViewHolderFactoryMatchersProviderFactory =
+                    ItemViewHolderFactoryMatchersProviderFactory
                 xFhirQueryResolver =
                     XFhirQueryResolver { it -> fhirEngine.search(it).map { it.resource } }
             }

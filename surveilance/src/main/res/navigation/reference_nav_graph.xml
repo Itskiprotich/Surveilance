@@ -20,7 +20,7 @@
         android:id="@+id/childFragment"
         android:name="com.imeja.surveilance.home.ChildFragment"
         android:label="Child Fragment"
-        tools:layout="@layout/fragment_child" >
+        tools:layout="@layout/fragment_child">
         <action
             android:id="@+id/action_childFragment_to_singleFragment"
             app:destination="@id/singleFragment" />
@@ -34,9 +34,9 @@
         tools:layout="@layout/fragment_selection" />
     <fragment
         android:id="@+id/singleFragment"
-        android:name="com.imeja.surveilance.CrudOperationFragment"
+        android:name="com.imeja.surveilance.home.SingleFragment"
         android:label="Single Fragment"
-        tools:layout="@layout/fragment_single" >
+        tools:layout="@layout/fragment_single">
         <action
             android:id="@+id/action_singleFragment_to_selectionFragment"
             app:destination="@id/selectionFragment" />

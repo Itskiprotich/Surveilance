@@ -22,6 +22,7 @@ import com.imeja.surveilance.AddPatientFragment.Companion.QUESTIONNAIRE_FRAGMENT
 import com.imeja.surveilance.R
 import com.imeja.surveilance.databinding.ActivityAddParentCaseBinding
 import com.imeja.surveilance.helpers.FormatterClass
+import com.imeja.surveilance.helpers.ItemViewHolderFactoryMatchersProviderFactory
 import com.imeja.surveilance.helpers.LocationUtils
 import com.imeja.surveilance.helpers.ProgressDialogManager
 import com.imeja.surveilance.viewmodels.AddClientViewModel
@@ -176,17 +177,37 @@ class AddParentCaseActivity : AppCompatActivity() {
         dialog.show()
     }
 
+//    private fun addQuestionnaireFragment() {
+//        supportFragmentManager.commit {
+//            add(
+//                R.id.add_patient_container,
+//                QuestionnaireFragment.builder()
+//                    .setQuestionnaire(viewModel.questionnaireJson)
+//                    .setShowCancelButton(true)
+//                    .setSubmitButtonText("Submit")
+//                    .build(),
+//                QUESTIONNAIRE_FRAGMENT_TAG,
+//            )
+//        }
+//    }
+
+
     private fun addQuestionnaireFragment() {
-        supportFragmentManager.commit {
-            add(
-                R.id.add_patient_container,
-                QuestionnaireFragment.builder()
-                    .setQuestionnaire(viewModel.questionnaireJson)
-                    .setShowCancelButton(true)
-                    .setSubmitButtonText("Submit")
-                    .build(),
-                QUESTIONNAIRE_FRAGMENT_TAG,
-            )
+        lifecycleScope.launch {
+            if (supportFragmentManager.findFragmentByTag(QUESTIONNAIRE_FRAGMENT_TAG) == null) {
+                supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    val questionnaireFragmentBuilder =
+                        QuestionnaireFragment.builder().apply {
+                            setCustomQuestionnaireItemViewHolderFactoryMatchersProvider(
+                                ItemViewHolderFactoryMatchersProviderFactory
+                                    .LOCATION_WIDGET_PROVIDER,
+                            )
+                            setQuestionnaire(viewModel.questionnaireJson)
+                        }
+                    add(R.id.add_patient_container, questionnaireFragmentBuilder.build(), QUESTIONNAIRE_FRAGMENT_TAG)
+                }
+            }
         }
     }
 

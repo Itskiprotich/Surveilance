@@ -66,6 +66,8 @@ dependencies {
   }
   implementation(project(":engine"))
 
+  implementation(project(path = ":contrib:locationwidget"))
+
   testImplementation(libs.junit)
 
   implementation(libs.kotlinx.serialization.json)
