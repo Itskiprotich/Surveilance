@@ -36,7 +36,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.fhir.FhirEngine
-import com.google.android.fhir.demo.PatientListFragmentDirections
 import com.icl.demo.databinding.FragmentPatientListBinding
 import timber.log.Timber
 

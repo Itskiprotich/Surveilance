@@ -30,8 +30,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.fhir.FhirEngine
-import com.google.android.fhir.demo.PatientDetailsFragmentArgs
-import com.google.android.fhir.demo.PatientDetailsFragmentDirections
 import com.icl.demo.databinding.PatientDetailBinding
 
 /**
