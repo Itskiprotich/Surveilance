@@ -12,11 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.icl.demo.R
 import com.icl.demo.models.LayoutMode
 import com.icl.demo.models.NavigationNode
 import com.icl.demo.models.ReportingAction
 import com.icl.demo.models.ReportingConfig
+import com.icl.demo.utils.FormatterClass
 import kotlinx.serialization.json.Json
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -45,6 +47,8 @@ class SelectorFragment : Fragment() {
     }
 
     private val viewModel: ConfigNavigatorViewModel by viewModels()
+    private var lastBackPressTime = 0L
+    private val EXIT_INTERVAL = 2000L // 2 seconds
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -120,19 +124,32 @@ class SelectorFragment : Fragment() {
 
         val greeting = view.findViewById<TextView>(R.id.greetingText)
         val usernameText = view.findViewById<TextView>(R.id.usernameText)
-
+        val time = FormatterClass().getTimeOfDay()
         val isRoot = !viewModel.canGoBack()
         if (isRoot) {
             greeting.visibility = View.VISIBLE
             // Replace with your actual user fetch
             val username = "Japheth"
             usernameText.text = username
+
+            greeting.text = "$time,"
         } else {
             // Hide greeting + time
-            greeting.visibility = View.GONE
+            greeting.visibility = View.INVISIBLE
             // Show the *current node name*
             val parentNode = viewModel.currentTitle()
             usernameText.text = parentNode
+        }
+        viewModel.currentTitle.observe(viewLifecycleOwner) { title ->
+            if (viewModel.canGoBack()) {
+                greeting.visibility = View.INVISIBLE
+
+                usernameText.text = title     // <-- sets sub-node title correctly
+            } else {
+                greeting.visibility = View.VISIBLE
+                usernameText.text = "Japheth"
+                greeting.text = "$time,"
+            }
         }
 
     }
@@ -145,14 +162,24 @@ class SelectorFragment : Fragment() {
     }
 
     private fun setupBackNavigation() {
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            if (viewModel.canGoBack()) {
-                viewModel.goBack()
+            if (!viewModel.canGoBack()) {
+                // You are at the root level
+                val current = System.currentTimeMillis()
+                if (current - lastBackPressTime < EXIT_INTERVAL) {
+                    requireActivity().finish() // exit app
+                } else {
+                    lastBackPressTime = current
+                    Snackbar.make(requireView(), "Press back again to exit", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
             } else {
-                remove()
-                requireActivity().onBackPressed()
+                // Normal navigation back
+                viewModel.goBack()
             }
         }
+
     }
 
     private fun shouldUseGridLayout(): Boolean {

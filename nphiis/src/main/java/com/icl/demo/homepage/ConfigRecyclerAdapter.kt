@@ -1,7 +1,9 @@
 package com.icl.demo.homepage
 
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
+import com.icl.demo.R
 import com.icl.demo.models.NavigationNode
 import com.icl.demo.models.ReportingAction
 import com.icl.demo.models.ReportingItem
@@ -32,14 +34,16 @@ class ConfigRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val node = items[position]
-        when {
-            node is NavigationNode.Category -> (holder as BindableCategory)
+        when (val node = items[position]) {
+            is NavigationNode.Category -> (holder as BindableCategory)
                 .bind(node.item, onCategoryClick)
 
-            node is NavigationNode.ActionNode -> (holder as BindableAction)
+            is NavigationNode.ActionNode -> (holder as BindableAction)
                 .bind(node.action, onActionClick)
         }
+        holder.itemView.startAnimation(
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_animation_fall_down)
+        )
     }
 
     override fun getItemCount() = items.size
