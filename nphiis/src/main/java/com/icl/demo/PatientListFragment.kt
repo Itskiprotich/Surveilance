@@ -36,8 +36,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.fhir.FhirEngine
-import com.google.android.fhir.demo.PatientListViewModel.PatientListViewModelFactory
-import com.google.android.fhir.demo.databinding.FragmentPatientListBinding
+import com.google.android.fhir.demo.PatientListFragmentDirections
+import com.icl.demo.databinding.FragmentPatientListBinding
 import timber.log.Timber
 
 class PatientListFragment : Fragment() {
@@ -96,7 +96,10 @@ class PatientListFragment : Fragment() {
     patientListViewModel =
       ViewModelProvider(
           this,
-          PatientListViewModelFactory(requireActivity().application, fhirEngine),
+          PatientListViewModel.PatientListViewModelFactory(
+              requireActivity().application,
+              fhirEngine
+          ),
         )
         .get(PatientListViewModel::class.java)
     val recyclerView: RecyclerView = binding.patientListContainer.patientList

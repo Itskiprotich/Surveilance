@@ -19,7 +19,7 @@ package com.icl.demo
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.fhir.demo.databinding.ActivityMainBinding
+import com.icl.demo.databinding.ActivityMainBinding
 
 const val MAX_RESOURCE_COUNT = 20
 

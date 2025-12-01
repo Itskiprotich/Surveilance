@@ -22,9 +22,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.android.fhir.demo.data.DemoFhirSyncWorker
 import com.google.android.fhir.sync.CurrentSyncJobStatus
 import com.google.android.fhir.sync.Sync
+import com.icl.demo.data.DemoFhirSyncWorker
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -18,7 +18,7 @@ package com.icl.demo
 
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.fhir.demo.databinding.ObservationListItemBinding
+import com.icl.demo.databinding.ObservationListItemBinding
 
 class ObservationItemViewHolder(private val binding: ObservationListItemBinding) :
   RecyclerView.ViewHolder(binding.root) {

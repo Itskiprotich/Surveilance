@@ -17,7 +17,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name="com.google.android.fhir.demo.com.icl.android.fhir.demo.FhirApplication"
+        android:name=".FhirApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_fire_engine"
         android:label="@string/app_name"
@@ -27,7 +27,7 @@
         android:theme="@style/AppTheme"
     >
         <activity
-            android:name="com.google.android.fhir.demo.com.icl.android.fhir.demo.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize"
             android:exported="true"

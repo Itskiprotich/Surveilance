@@ -25,13 +25,13 @@ import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.fhir.demo.PatientDetailsRecyclerViewAdapter.Companion.allCornersRounded
-import com.google.android.fhir.demo.databinding.PatientDetailsCardViewBinding
-import com.google.android.fhir.demo.databinding.PatientDetailsHeaderBinding
-import com.google.android.fhir.demo.databinding.PatientListItemViewBinding
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.RoundedCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
+import com.icl.demo.PatientDetailsRecyclerViewAdapter.Companion.allCornersRounded
+import com.icl.demo.databinding.PatientDetailsCardViewBinding
+import com.icl.demo.databinding.PatientDetailsHeaderBinding
+import com.icl.demo.databinding.PatientListItemViewBinding
 
 class PatientDetailsRecyclerViewAdapter(private val onScreenerClick: () -> Unit) :
   ListAdapter<PatientDetailData, PatientDetailItemViewHolder>(PatientDetailDiffUtil()) {

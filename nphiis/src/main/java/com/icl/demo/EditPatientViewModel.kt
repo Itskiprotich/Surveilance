@@ -26,8 +26,8 @@ import ca.uhn.fhir.context.FhirContext
 import ca.uhn.fhir.context.FhirVersionEnum
 import com.google.android.fhir.FhirEngine
 import com.google.android.fhir.datacapture.mapping.ResourceMapper
-import com.google.android.fhir.demo.extensions.readFileFromAssets
 import com.google.android.fhir.get
+import com.icl.demo.extensions.readFileFromAssets
 import kotlinx.coroutines.launch
 import org.hl7.fhir.r4.model.Patient
 import org.hl7.fhir.r4.model.Questionnaire

@@ -28,8 +28,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
-import com.google.android.fhir.demo.extensions.launchAndRepeatStarted
 import com.google.android.fhir.sync.CurrentSyncJobStatus
+import com.icl.demo.extensions.launchAndRepeatStarted
 import timber.log.Timber
 
 class SyncFragment : Fragment() {

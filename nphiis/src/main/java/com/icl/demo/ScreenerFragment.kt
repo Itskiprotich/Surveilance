@@ -30,6 +30,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import com.google.android.fhir.datacapture.QuestionnaireFragment
+import com.google.android.fhir.demo.ScreenerFragmentArgs
 import kotlinx.coroutines.launch
 
 /** A fragment class to show screener questionnaire screen. */

@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.fhir.demo.HomeFragmentDirections
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 

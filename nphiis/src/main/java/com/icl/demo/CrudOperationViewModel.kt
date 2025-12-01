@@ -24,7 +24,7 @@ import com.google.android.fhir.FhirEngine
 import com.google.android.fhir.FhirEngineProvider
 import com.google.android.fhir.datacapture.extensions.logicalId
 import com.google.android.fhir.delete
-import com.google.android.fhir.demo.helpers.PatientCreationHelper
+import com.icl.demo.helpers.PatientCreationHelper
 import java.util.Locale
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow

@@ -92,6 +92,11 @@ object Releases {
     const val versionCode = 1
     const val versionName = "1.0"
   }
+  object NPHIIS {
+    const val applicationId = "com.icl.demo"
+    const val versionCode = 1
+    const val versionName = "1.0"
+  }
 
   object Catalog {
     const val applicationId = "com.google.android.fhir.catalog"

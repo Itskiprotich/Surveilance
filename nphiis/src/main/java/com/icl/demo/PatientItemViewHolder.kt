@@ -22,7 +22,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.fhir.demo.databinding.PatientListItemViewBinding
+import com.icl.demo.databinding.PatientListItemViewBinding
 import java.time.LocalDate
 import java.time.Period
 import org.hl7.fhir.r4.model.codesystems.RiskProbability

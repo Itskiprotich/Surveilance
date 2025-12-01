@@ -20,7 +20,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.google.android.fhir.demo.databinding.ObservationListItemBinding
+import com.icl.demo.databinding.ObservationListItemBinding
 
 /** UI Controller helper class to display list of observations. */
 class ObservationItemRecyclerViewAdapter :

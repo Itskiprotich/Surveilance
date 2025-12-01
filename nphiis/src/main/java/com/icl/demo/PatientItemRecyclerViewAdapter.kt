@@ -20,7 +20,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.google.android.fhir.demo.databinding.PatientListItemViewBinding
+import com.icl.demo.databinding.PatientListItemViewBinding
 
 /** UI Controller helper class to monitor Patient viewmodel and display list of patients. */
 class PatientItemRecyclerViewAdapter(

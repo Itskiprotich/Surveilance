@@ -20,9 +20,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.Constraints
-import com.google.android.fhir.demo.data.DemoFhirSyncWorker
-import com.google.android.fhir.demo.extensions.formatSyncTimestamp
-import com.google.android.fhir.demo.helpers.ProgressHelper
 import com.google.android.fhir.sync.CurrentSyncJobStatus
 import com.google.android.fhir.sync.LastSyncJobStatus
 import com.google.android.fhir.sync.PeriodicSyncConfiguration
@@ -30,6 +27,9 @@ import com.google.android.fhir.sync.PeriodicSyncJobStatus
 import com.google.android.fhir.sync.RepeatInterval
 import com.google.android.fhir.sync.Sync
 import com.google.android.fhir.sync.SyncJobStatus
+import com.icl.demo.data.DemoFhirSyncWorker
+import com.icl.demo.extensions.formatSyncTimestamp
+import com.icl.demo.helpers.ProgressHelper
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

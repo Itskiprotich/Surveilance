@@ -33,8 +33,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
-import com.google.android.fhir.demo.helpers.PatientCreationHelper
 import com.google.android.material.tabs.TabLayout
+import com.icl.demo.helpers.PatientCreationHelper
 import kotlinx.coroutines.launch
 import org.hl7.fhir.r4.model.Enumerations
 
