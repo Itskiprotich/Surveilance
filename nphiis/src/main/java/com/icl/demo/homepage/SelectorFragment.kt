@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
@@ -17,6 +18,8 @@ import com.icl.demo.models.NavigationNode
 import com.icl.demo.models.ReportingAction
 import com.icl.demo.models.ReportingConfig
 import kotlinx.serialization.json.Json
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -102,6 +105,7 @@ class SelectorFragment : Fragment() {
                         else -> LayoutMode.LINEAR
                     }
                 }
+
                 else -> LayoutMode.LINEAR
             }
 
@@ -113,14 +117,32 @@ class SelectorFragment : Fragment() {
         viewModel.start(config.reporting)
 
         setupBackNavigation()
+
+        val greeting = view.findViewById<TextView>(R.id.greetingText)
+        val usernameText = view.findViewById<TextView>(R.id.usernameText)
+
+        val isRoot = !viewModel.canGoBack()
+        if (isRoot) {
+            greeting.visibility = View.VISIBLE
+            // Replace with your actual user fetch
+            val username = "Japheth"
+            usernameText.text = username
+        } else {
+            // Hide greeting + time
+            greeting.visibility = View.GONE
+            // Show the *current node name*
+            val parentNode = viewModel.currentTitle()
+            usernameText.text = parentNode
+        }
+
     }
+
     private fun applyLayoutMode(recycler: RecyclerView, mode: LayoutMode) {
         recycler.layoutManager = when (mode) {
             LayoutMode.LINEAR -> LinearLayoutManager(requireContext())
             LayoutMode.GRID -> GridLayoutManager(requireContext(), 2)
         }
     }
-
 
     private fun setupBackNavigation() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {

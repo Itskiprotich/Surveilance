@@ -18,6 +18,16 @@ class ConfigNavigatorViewModel : ViewModel() {
     fun isComingSoon(item: ReportingItem): Boolean = item.comingSoon
     fun isComingSoon(action: ReportingAction): Boolean = action.comingSoon
 
+    fun currentTitle(): String {
+        val current = navStack.lastOrNull() ?: return ""
+        val firstNode = current.firstOrNull()
+        return when (firstNode) {
+            is NavigationNode.Category -> firstNode.item.name
+            is NavigationNode.ActionNode -> firstNode.action.label
+            else -> ""
+        }
+    }
+
     fun start(root: List<ReportingItem>) {
         val nodes = root.map { NavigationNode.Category(it) }
         navStack.clear()
