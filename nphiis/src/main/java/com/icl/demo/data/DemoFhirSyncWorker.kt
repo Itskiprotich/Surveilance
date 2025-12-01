@@ -17,6 +17,7 @@
 package com.icl.demo.data
 
 import android.content.Context
+import androidx.datastore.dataStore
 import androidx.work.WorkerParameters
 import com.google.android.fhir.sync.AcceptLocalConflictResolver
 import com.google.android.fhir.sync.DownloadWorkManager
@@ -27,21 +28,27 @@ import com.google.android.fhir.sync.upload.UploadStrategy
 import com.icl.demo.FhirApplication
 
 class DemoFhirSyncWorker(appContext: Context, workerParams: WorkerParameters) :
-  FhirSyncWorker(appContext, workerParams) {
+    FhirSyncWorker(appContext, workerParams) {
 
-  override fun getDownloadWorkManager(): DownloadWorkManager {
-    return TimestampBasedDownloadWorkManagerImpl(FhirApplication.dataStore(applicationContext))
-  }
+    override fun getDownloadWorkManager(): DownloadWorkManager {
+        return TimestampBasedDownloadWorkManagerImpl(
+            context = applicationContext,
+            fhirEngine = FhirApplication.fhirEngine(applicationContext),
+            dataStore = FhirApplication.dataStore(
+                applicationContext
+            )
+        )
+    }
 
-  override fun getConflictResolver() = AcceptLocalConflictResolver
+    override fun getConflictResolver() = AcceptLocalConflictResolver
 
-  override fun getUploadStrategy(): UploadStrategy =
-    UploadStrategy.forBundleRequest(
-      methodForCreate = HttpCreateMethod.PUT,
-      methodForUpdate = HttpUpdateMethod.PATCH,
-      squash = true,
-      bundleSize = 500,
-    )
+    override fun getUploadStrategy(): UploadStrategy =
+        UploadStrategy.forBundleRequest(
+            methodForCreate = HttpCreateMethod.PUT,
+            methodForUpdate = HttpUpdateMethod.PATCH,
+            squash = true,
+            bundleSize = 500,
+        )
 
-  override fun getFhirEngine() = FhirApplication.fhirEngine(applicationContext)
+    override fun getFhirEngine() = FhirApplication.fhirEngine(applicationContext)
 }
