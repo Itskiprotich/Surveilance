@@ -77,4 +77,8 @@
     <string name="search_patient_by">Search Patient by</string>
     <string name="given_name">Given name</string>
     <string name="family_name">Family name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="_0">0</string>
+    <string name="cases">Cases</string>
 </resources>

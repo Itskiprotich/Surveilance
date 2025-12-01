@@ -1,0 +1,308 @@
+{
+  "reporting": [
+    {
+      "name": "Notifiable Diseases",
+      "code": "ND",
+      "layout": "grid",
+      "showIcon": true,
+      "icon": "notifiable",
+      "children": [
+        {
+          "name": "Immediate Reportable Diseases",
+          "code": "ND_IMMEDIATE",
+          "showIcon": false,
+          "layout": "grid",
+          "children": [
+            {
+              "name": "Measles",
+              "code": "MEASLES",
+              "layout": "grid",
+              "showIcon": false,
+              "actions": [
+                {
+                  "type": "add",
+                  "label": "Add New Measles Case",
+                  "questionnaire": "measles_questionnaire.json",
+                  "icon": "add",
+                  "showIcon": true
+                },
+                {
+                  "type": "view",
+                  "label": "Measles Case List",
+                  "target": "cases",
+                  "icon": "view",
+                  "showIcon": true
+                }
+              ]
+            },
+            {
+              "name": "AFP",
+              "code": "AFP",
+              "layout": "grid",
+              "showIcon": false,
+              "actions": [
+                {
+                  "type": "add",
+                  "label": "Add New AFP Case",
+                  "questionnaire": "afp_questionnaire.json",
+                  "icon": "add",
+                  "showIcon": true
+                },
+                {
+                  "type": "view",
+                  "label": "AFP Case List",
+                  "target": "cases",
+                  "icon": "view",
+                  "showIcon": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Weekly Reportable Diseases",
+          "code": "ND_WEEKLY",
+          "layout": "grid",
+          "showIcon": false,
+          "children": [
+            {
+              "name": "MoH 505",
+              "code": "MOH_505",
+              "layout": "grid",
+              "showIcon": false,
+              "actions": [
+                {
+                  "type": "add",
+                  "label": "Add New Record",
+                  "questionnaire": "moh_505_questionnaire.json",
+                  "icon": "add",
+                  "showIcon": true
+                },
+                {
+                  "type": "view",
+                  "label": "MoH 505 Case List",
+                  "target": "reports",
+                  "icon": "view",
+                  "showIcon": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Monthly Reportable Diseases",
+          "code": "ND_MONTHLY",
+          "comingSoon": true,
+          "showIcon": false,
+          "layout": "grid",
+          "children": [],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "name": "Mass Immunization",
+      "code": "MI",
+      "layout": "grid",
+      "showIcon": true,
+      "icon": "mass",
+      "children": [
+        {
+          "name": "Mpox Immunization",
+          "code": "MI_MPOX",
+          "layout": "grid",
+          "showIcon": false,
+          "children": [
+            {
+              "name": "Mpox Register",
+              "code": "MI_MPOX_REGISTER",
+              "showIcon": false,
+              "layout": "grid",
+              "actions": [
+                {
+                  "type": "add",
+                  "label": "Add New Mpox Register ",
+                  "questionnaire": "mpox_register_questionnaire.json",
+                  "icon": "add",
+                  "showIcon": true
+                },
+                {
+                  "type": "view",
+                  "label": "Mpox Register List",
+                  "target": "register",
+                  "icon": "view",
+                  "showIcon": true
+                }
+              ]
+            },
+            {
+              "name": "Summary Sheet",
+              "code": "MI_MPOX_SUMMARY",
+              "layout": "grid",
+              "showIcon": false,
+              "actions": [
+                {
+                  "type": "add",
+                  "label": "Add New Team Record",
+                  "questionnaire": "mpox_summary_questionnaire.json",
+                  "icon": "add",
+                  "showIcon": true
+                },
+                {
+                  "type": "view",
+                  "label": "Summary Sheet Case List",
+                  "target": "summary",
+                  "icon": "view",
+                  "showIcon": true
+                }
+              ]
+            },
+            {
+              "name": "Supervisor",
+              "code": "MI_MPOX_SUPERVISOR",
+              "layout": "grid",
+              "showIcon": false,
+              "actions": [
+                {
+                  "type": "add",
+                  "label": "Add New Supervisor Checklist Case",
+                  "questionnaire": "mpox_supervisor_questionnaire.json",
+                  "icon": "add",
+                  "showIcon": true
+                },
+                {
+                  "type": "view",
+                  "label": "View Supervisor Reports Case List",
+                  "target": "supervisor",
+                  "icon": "view",
+                  "showIcon": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Polio Immunization (OPV)",
+          "code": "MI_POLIO_OPV",
+          "layout": "grid",
+          "comingSoon": true,
+          "showIcon": false,
+          "children": [],
+          "actions": []
+        },
+        {
+          "name": "Measles Immunization",
+          "code": "MI_MEASLES",
+          "layout": "grid",
+          "comingSoon": true,
+          "showIcon": false,
+          "children": [],
+          "actions": []
+        },
+        {
+          "name": "Cholera Immunization",
+          "code": "MI_CHOLERA",
+          "layout": "grid",
+          "comingSoon": true,
+          "showIcon": false,
+          "children": [],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "name": "Case Management",
+      "code": "CM",
+      "layout": "grid",
+      "showIcon": true,
+      "icon": "case",
+      "children": [
+        {
+          "name": "Visceral Leishmaniasis Case Management Form",
+          "code": "CM_VL_FORM",
+          "layout": "grid",
+          "showIcon": false,
+          "actions": [
+            {
+              "type": "add",
+              "label": "Add New VL Case ",
+              "questionnaire": "vl_case_management_questionnaire.json",
+              "icon": "add",
+              "showIcon": true
+            },
+            {
+              "type": "view",
+              "label": "VL Case List",
+              "target": "cases",
+              "icon": "view",
+              "showIcon": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "RCCE Tools",
+      "code": "RCCE",
+      "layout": "grid",
+      "showIcon": true,
+      "icon": "rcce",
+      "children": [
+        {
+          "name": "Rumor Tracking Tool",
+          "code": "RCCE_RUMOR_TRACKING",
+          "layout": "grid",
+          "showIcon": false,
+          "actions": [
+            {
+              "type": "add",
+              "label": "Add New Report",
+              "questionnaire": "rumor_tracking_questionnaire.json",
+              "icon": "add",
+              "showIcon": true
+            },
+            {
+              "type": "view",
+              "label": "View Reported Cases",
+              "target": "records",
+              "icon": "view",
+              "showIcon": true
+            }
+          ]
+        },
+        {
+          "name": "Social Investigation Form",
+          "code": "RCCE_SOCIAL_INVESTIGATION",
+          "layout": "grid",
+          "showIcon": false,
+          "actions": [
+            {
+              "type": "add",
+              "label": "Add New Social Investigation Form",
+              "questionnaire": "social_investigation_questionnaire.json",
+              "icon": "add",
+              "showIcon": true
+            },
+            {
+              "type": "view",
+              "label": "Social Investigation Reports",
+              "target": "entries",
+              "icon": "view",
+              "showIcon": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Assessment/Surveys",
+      "code": "ASSESS",
+      "layout": "grid",
+      "comingSoon": true,
+      "showIcon": true,
+      "icon": "survey",
+      "children": [],
+      "actions": []
+    }
+  ]
+}

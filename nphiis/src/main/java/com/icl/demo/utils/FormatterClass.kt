@@ -94,6 +94,7 @@ class FormatterClass {
         editor.remove(key)
         editor.apply()
     }
+
     fun clearCache(context: Context) {
         val prefsLocal = context.getSharedPreferences(PREFNAME, Context.MODE_PRIVATE)
         prefs(context).edit().clear().apply()
@@ -136,6 +137,21 @@ class FormatterClass {
             in 12..16 -> "Good Afternoon"
             in 17..20 -> "Good Evening"
             else -> "Good Night"
+        }
+    }
+
+    fun resolveIcon(name: String): Int {
+        return when (name.lowercase()) {
+            "notifiable" -> R.drawable.virus
+            "mass" -> R.drawable.syringe
+            "case" -> R.drawable.clipboard
+            "rcce" -> R.drawable.people
+            "survey" -> R.drawable.presentation
+            "add" -> R.drawable.useraddfill
+            "view" -> R.drawable.received
+
+            // default fallback — nothing dumb happens
+            else -> 0
         }
     }
 }
