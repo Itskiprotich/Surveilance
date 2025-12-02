@@ -189,4 +189,5 @@
     <string name="sync_data">Sync Data</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="forgot_password_label">Forgot Password</string>
+    <string name="preparing_sync">Preparing sync...</string>
 </resources>

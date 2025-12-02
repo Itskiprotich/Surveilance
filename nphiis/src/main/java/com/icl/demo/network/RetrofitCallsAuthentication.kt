@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.icl.demo.MainActivity
+import com.icl.demo.auth.InitialSyncActivity
 import com.icl.demo.models.DbResetPasswordData
 import com.icl.demo.models.DbResponseError
 import com.icl.demo.models.DbSetPasswordReq
@@ -243,11 +244,12 @@ class RetrofitCallsAuthentication {
                                     getUserDetails(context)
                                     messageToast = "Login successful.."
 
-                                    val intent = Intent(context, MainActivity::class.java)
+                                    val intent = Intent(context, InitialSyncActivity::class.java)
                                     intent.addFlags(
                                         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     )
                                     context.startActivity(intent)
+
                                     if (context is Activity) {
                                         context.finish()
                                     }

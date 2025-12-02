@@ -26,6 +26,20 @@ class FormatterClass {
     private val PREFNAME = "location_cache"
     private val KEYLOCATIONFACILITYMAP = "location_facility_map"
 
+    private val KEY_SYNC_DONE = "sync_done"
+
+    fun isSyncDone(context: Context): Boolean {
+        return context.getSharedPreferences(PREFNAME, Context.MODE_PRIVATE)
+            .getBoolean(KEY_SYNC_DONE, false)
+    }
+
+    fun setSyncDone(context: Context) {
+        context.getSharedPreferences(PREFNAME, Context.MODE_PRIVATE)
+            .edit()
+            .putBoolean(KEY_SYNC_DONE, true)
+            .apply()
+    }
+
     fun saveFacilityIdsForWard(context: Context, locationId: String, facilityIds: List<String>) {
         val prefs = context.getSharedPreferences(PREFNAME, Context.MODE_PRIVATE)
         val existingJson = prefs.getString(KEYLOCATIONFACILITYMAP, "{}")
