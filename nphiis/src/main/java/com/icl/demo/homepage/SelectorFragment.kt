@@ -1,5 +1,6 @@
 package com.icl.demo.homepage
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.icl.demo.R
+import com.icl.demo.forms.ParentActivity
 import com.icl.demo.models.LayoutMode
 import com.icl.demo.models.NavigationNode
 import com.icl.demo.models.ReportingAction
@@ -196,7 +198,7 @@ class SelectorFragment : Fragment() {
 
     private fun openQuestionnaire(fileName: String?) {
         if (fileName == null) return
-        // TODO: Launch your form UI
+        startActivity(Intent(requireContext(), ParentActivity::class.java))
     }
 
     private fun openCasesView(action: ReportingAction) {

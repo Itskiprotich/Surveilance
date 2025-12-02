@@ -14,6 +14,16 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".notifications.NotificationsActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".forms.ChildActivity"
+            android:exported="false" />
+        <activity
+            android:name=".forms.ParentActivity"
+            android:exported="false" />
+        <activity
             android:name=".auth.SetPasswordActivity"
             android:exported="false" />
         <activity
