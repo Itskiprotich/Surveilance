@@ -128,8 +128,9 @@
                 {
                   "type": "add",
                   "label": "Add New Mpox Register ",
-                  "questionnaire": "mpox_register_questionnaire.json",
+                  "questionnaire": "mpox-register.json",
                   "icon": "add",
+                  "case": "Mpox Register",
                   "showIcon": true
                 },
                 {
@@ -137,6 +138,7 @@
                   "label": "Mpox Register List",
                   "target": "register",
                   "icon": "view",
+                  "case": "Mpox Register",
                   "showIcon": true
                 }
               ]
@@ -150,8 +152,9 @@
                 {
                   "type": "add",
                   "label": "Add New Team Record",
-                  "questionnaire": "mpox_summary_questionnaire.json",
+                  "questionnaire": "mpox-tally-sheet.json",
                   "icon": "add",
+                  "case": "Mpox - Summary Sheet",
                   "showIcon": true
                 },
                 {
@@ -159,6 +162,7 @@
                   "label": "Summary Sheet Case List",
                   "target": "summary",
                   "icon": "view",
+                  "case": "Mpox - Summary Sheet",
                   "showIcon": true
                 }
               ]
@@ -172,8 +176,9 @@
                 {
                   "type": "add",
                   "label": "Add New Supervisor Checklist Case",
-                  "questionnaire": "mpox_supervisor_questionnaire.json",
+                  "questionnaire": "mpox-supervisor-checklist.json",
                   "icon": "add",
+                  "case": "Mpox - Supervisor Checklist",
                   "showIcon": true
                 },
                 {
@@ -181,6 +186,7 @@
                   "label": "View Supervisor Reports Case List",
                   "target": "supervisor",
                   "icon": "view",
+                  "case": "Mpox - Supervisor Checklist",
                   "showIcon": true
                 }
               ]
@@ -232,8 +238,9 @@
             {
               "type": "add",
               "label": "Add New VL Case ",
-              "questionnaire": "vl_case_management_questionnaire.json",
+              "questionnaire": "vl-case.json",
               "icon": "add",
+              "case": "VL Case Information",
               "showIcon": true
             },
             {
@@ -241,6 +248,7 @@
               "label": "VL Case List",
               "target": "cases",
               "icon": "view",
+              "case": "VL Case Information",
               "showIcon": true
             }
           ]
@@ -263,8 +271,9 @@
             {
               "type": "add",
               "label": "Add New Report",
-              "questionnaire": "rumor_tracking_questionnaire.json",
+              "questionnaire": "rumor-tracking-case.json",
               "icon": "add",
+              "case": "Social Listening and Rumor Tracking Tool",
               "showIcon": true
             },
             {
@@ -272,6 +281,7 @@
               "label": "View Reported Cases",
               "target": "records",
               "icon": "view",
+              "case": "Social Listening and Rumor Tracking Tool",
               "showIcon": true
             }
           ]
@@ -285,8 +295,9 @@
             {
               "type": "add",
               "label": "Add New Social Investigation Form",
-              "questionnaire": "social_investigation_questionnaire.json",
+              "questionnaire": "social-community.json",
               "icon": "add",
+              "case": "Social Investigation Form",
               "showIcon": true
             },
             {
@@ -294,6 +305,7 @@
               "label": "Social Investigation Reports",
               "target": "entries",
               "icon": "view",
+              "case": "Social Investigation Form",
               "showIcon": true
             }
           ]

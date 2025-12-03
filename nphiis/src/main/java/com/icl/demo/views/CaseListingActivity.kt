@@ -100,7 +100,6 @@ class CaseListingActivity : AppCompatActivity() {
 
                 "mpox-register" -> {
                     val adapterRegister = MpoxPatientAdapter(
-                        items,
                         this::onPatientItemClicked,
                         "$titleName",
                         this@CaseListingActivity
@@ -110,7 +109,8 @@ class CaseListingActivity : AppCompatActivity() {
                     patientListViewModel.loadMpoxPatientList(slug)
                     lifecycleScope.launch {
                         patientListViewModel.patients.collect { newList ->
-                            adapterRegister.addPatients(newList)
+
+                            adapterRegister.appendPatients(newList)
                             if (newList.isNotEmpty()) {
                                 binding.apply {
                                     count.text = "Showing ${newList.size} Results"

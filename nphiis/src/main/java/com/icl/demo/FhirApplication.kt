@@ -18,6 +18,9 @@ package com.icl.demo
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
+import androidx.work.Constraints
+import androidx.work.NetworkType
 import com.google.android.fhir.DatabaseErrorStrategy.RECREATE_AT_OPEN
 import com.google.android.fhir.FhirEngine
 import com.google.android.fhir.FhirEngineConfiguration
@@ -27,10 +30,20 @@ import com.google.android.fhir.ServerConfiguration
 import com.google.android.fhir.datacapture.DataCaptureConfig
 import com.google.android.fhir.datacapture.XFhirQueryResolver
 import com.google.android.fhir.search.search
+import com.google.android.fhir.sync.PeriodicSyncConfiguration
+import com.google.android.fhir.sync.RepeatInterval
+import com.google.android.fhir.sync.Sync
 import com.google.android.fhir.sync.remote.HttpLogger
+import com.icl.demo.data.DemoFhirSyncWorker
 import com.icl.demo.location.ContribQuestionnaireItemViewHolderFactoryMatchersProviderFactory
 import com.icl.demo.utils.Constants.BASE_URL
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 class FhirApplication : Application(), DataCaptureConfig.Provider {
     // Only initiate the FhirEngine when used for the first time, not when the app is created.
@@ -40,6 +53,7 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
 
     private val dataStore by lazy { DemoDataStore(this) }
 
+    private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
@@ -72,8 +86,35 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
                 xFhirQueryResolver =
                     XFhirQueryResolver { it -> fhirEngine.search(it).map { it.resource } }
             }
+        setupPeriodicSync()
     }
 
+    private fun setupPeriodicSync() {
+        appScope.launch {
+            try {
+                Sync.periodicSync<DemoFhirSyncWorker>(
+                    this@FhirApplication,
+                    periodicSyncConfiguration = PeriodicSyncConfiguration(
+                        syncConstraints = Constraints.Builder()
+                            .setRequiredNetworkType(NetworkType.CONNECTED)
+                            .build(),
+                        repeat = RepeatInterval(interval = 15, timeUnit = TimeUnit.MINUTES)
+                    )
+
+                ).catch { throwable ->
+                    Log.e(
+                        "FHIR_SYNC",
+                        "Error setting up periodic sync: ${throwable.message}",
+                        throwable
+                    )
+                }
+                    .collect {
+                    }
+            } catch (e: Exception) {
+                Log.e("FHIR_SYNC", "Error setting up periodic sync: ${e.message}", e)
+            }
+        }
+    }
     private fun constructFhirEngine(): FhirEngine {
         return FhirEngineProvider.getInstance(this)
     }

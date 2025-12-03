@@ -1,13 +1,48 @@
 {
   "resourceType": "Questionnaire",
-  "id": "client-registration-sample",
-  "language": "en",
   "status": "active",
-  "date": "2020-11-18T07:24:47.111Z",
+  "version": "0.0.1",
+  "publisher": "Kiprotich Japheth (jkiprotich@intellisoftkenya.com)",
   "subjectType": [
-    "Patient"
+    "Encounter"
   ],
   "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemExtractionContext",
+      "valueExpression": {
+        "language": "application/x-fhir-query",
+        "expression": "Encounter",
+        "name": "encounter"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-entryMode",
+      "valueCode": "prior-edit"
+    },
+    {
+      "extension": [
+        {
+          "url": "name",
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext",
+            "code": "patient"
+          }
+        },
+        {
+          "url": "type",
+          "valueCode": "Patient"
+        }
+      ],
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "countyName",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='294367770999').answer.value.reference"
+      }
+    },
     {
       "url": "http://hl7.org/fhir/StructureDefinition/variable",
       "valueExpression": {
@@ -25,32 +60,250 @@
       }
     },
     {
-      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
-      "extension": [
-        {
-          "url": "name",
-          "valueCoding": {
-            "system": "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext",
-            "code": "client",
-            "display": "Client as a Patient"
-          }
-        },
-        {
-          "url": "type",
-          "valueCode": "Patient"
-        }
-      ]
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "selectedSubCountyName",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='819946803642').answer.value.reference"
+      }
     },
     {
-      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemExtractionContext",
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
       "valueExpression": {
-        "language": "application/x-fhir-query",
-        "expression": "Patient",
-        "name": "patient"
+        "name": "selectedWardName",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='819943434').answer.value.reference"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "selectedFacilityName",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='819943434').answer.value.reference"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "assignedCounty",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='user_county').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "assignedRole",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='user_role').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "assignedSubCounty",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='user_sub_county').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "assignedWard",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='user_ward').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "assignedFacility",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='user_facility').answer.value"
       }
     }
   ],
+  "title": "Mpox Register",
   "item": [
+    {
+      "item": [
+        {
+          "linkId": "294367770999",
+          "text": "County",
+          "type": "reference",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-answerExpression",
+              "valueExpression": {
+                "language": "application/x-fhir-query",
+                "expression": "Location?partof=Location/0&_sort=name"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-choiceColumn",
+              "extension": [
+                {
+                  "url": "path",
+                  "valueString": "name"
+                },
+                {
+                  "url": "forDisplay",
+                  "valueBoolean": true
+                }
+              ]
+            }
+          ],
+          "required": true
+        },
+        {
+          "type": "reference",
+          "linkId": "819946803642",
+          "text": "Sub County",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-answerExpression",
+              "valueExpression": {
+                "language": "application/x-fhir-query",
+                "expression": "Location?partof={{%countyName}}&_sort=name"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-choiceColumn",
+              "extension": [
+                {
+                  "url": "path",
+                  "valueString": "name"
+                },
+                {
+                  "url": "forDisplay",
+                  "valueBoolean": true
+                }
+              ]
+            }
+          ],
+          "required": true
+        },
+        {
+          "type": "reference",
+          "linkId": "819943434",
+          "text": "Ward",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-answerExpression",
+              "valueExpression": {
+                "language": "application/x-fhir-query",
+                "expression": "Location?partof={{%selectedSubCountyName}}&_sort=name"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-choiceColumn",
+              "extension": [
+                {
+                  "url": "path",
+                  "valueString": "name"
+                },
+                {
+                  "url": "forDisplay",
+                  "valueBoolean": true
+                }
+              ]
+            }
+          ],
+          "required": true
+        },
+        {
+          "type": "reference",
+          "linkId": "819946803677",
+          "text": "Health Facility",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-answerExpression",
+              "valueExpression": {
+                "language": "application/x-fhir-query",
+                "expression": "Location?partof={{%selectedWardName}}&_sort=name"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-choiceColumn",
+              "extension": [
+                {
+                  "url": "path",
+                  "valueString": "name"
+                },
+                {
+                  "url": "forDisplay",
+                  "valueBoolean": true
+                }
+              ]
+            }
+          ],
+          "required": true
+        },
+        {
+          "type": "choice",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "drop-down",
+                    "display": "Drop down"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "438862163919",
+          "text": "Type of health facility",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "Private",
+                "display": "Private"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Public",
+                "display": "Public"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "Faith Based",
+                "display": "Faith Based"
+              }
+            }
+          ]
+        },
+        {
+          "type": "string",
+          "linkId": "992818778559",
+          "text": "EPID No",
+          "readOnly": true
+        }
+      ],
+      "type": "group",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "page",
+                "display": "Page"
+              }
+            ]
+          }
+        }
+      ],
+      "linkId": "151479012557",
+      "text": "Reporting Site"
+    },
     {
       "type": "group",
       "extension": [
@@ -275,6 +528,7 @@
           "linkId": "929966324957",
           "type": "choice",
           "text": "Gender",
+          "required": true,
           "extension": [
             {
               "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
@@ -735,6 +989,7 @@
           "linkId": "contact_mpox",
           "text": "Contact of Mpox Case",
           "type": "choice",
+          "required": true,
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -774,6 +1029,7 @@
           "linkId": "allergic_history",
           "text": "Allergic History",
           "type": "choice",
+          "required": true,
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -833,7 +1089,7 @@
         {
           "linkId": "vaccine_name",
           "text": "Vaccine name",
-          "type": "choice",
+          "type": "choice",  "required": true,
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
