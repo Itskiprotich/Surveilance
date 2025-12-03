@@ -186,11 +186,11 @@ class CaseListingActivity : AppCompatActivity() {
                 "vl-case-information",
                 "moh-505-reporting-form",
                 "afp-case-information" -> {
-                    // startActivity(Intent(this@CaseListingActivity, SummarizedActivity::class.java))
+                    startActivity(Intent(this@CaseListingActivity, SummarizedActivity::class.java))
                 }
 
                 else -> {
-//                    startActivity( Intent(  this@CaseListingActivity,  FullCaseDetailsActivity::class.java ))
+
                 }
             }
         } else {
@@ -218,13 +218,14 @@ class CaseListingActivity : AppCompatActivity() {
             val slug = currentCase.toSlug()
 
             FormatterClass().saveSharedPref("latestEncounter", slug, this)
-//            val activityIntent = Intent(this@CaseListingActivity, SummarizedActivity::class.java)
-//            val activityIntent2 = Intent(this@CaseListingActivity, ResponseQuestionnaireActivity::class.java)
+            val activityIntent = Intent(this@CaseListingActivity, SummarizedActivity::class.java)
+            val activityIntent2 =
+                Intent(this@CaseListingActivity, ResponseQuestionnaireActivity::class.java)
             when (slug) {
 
                 "mpox-supervisor-checklist" -> {
 
-//                    startActivity(activityIntent2)
+                    startActivity(activityIntent2)
 
                 }
 
@@ -232,7 +233,7 @@ class CaseListingActivity : AppCompatActivity() {
                 "vl-case-information", "mpox-tally-sheet",
                 "afp-case-information",
                 "rcce" -> {
-//                    startActivity(activityIntent)
+                    startActivity(activityIntent)
                 }
 
                 else -> {
@@ -244,7 +245,7 @@ class CaseListingActivity : AppCompatActivity() {
                             this@CaseListingActivity
                         )
                     }
-//                    startActivity(activityIntent)
+                    startActivity(activityIntent)
                 }
             }
 

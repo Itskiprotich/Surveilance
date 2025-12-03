@@ -182,8 +182,73 @@ data class QuestionnaireAnswer(
     val text: String,
     val answer: String
 )
+
 data class SpecimenConfig(
     val type: String,
     val entryLinkId: String,
     val dateLinkId: String
+)
+
+@Serializable
+data class OutputGroup(
+    val linkId: String,
+    val text: String,
+    val type: String,
+    val items: List<OutputItem> = emptyList()
+)
+
+@Serializable
+data class OutputItem(
+    val linkId: String,
+    val text: String,
+    val type: String,
+    var value: String? = "",
+    var parentOperator: String? = "==",
+    val enable: Boolean = true,
+    val parentLink: String? = null,
+    val parentResponse: String? = null,
+)
+
+@Serializable
+data class QuestionnaireItem(
+    val item: List<GroupItem>
+)
+
+@Serializable
+data class QuestionnaireItemChild(
+    val item: List<ChildItem>
+)
+
+@Serializable
+data class GroupItem(
+    val linkId: String,
+    val text: String,
+    val type: String,
+    val item: List<ChildItem>? = null
+)
+
+@Serializable
+data class ChildItem(
+    val linkId: String,
+    val text: String,
+    val type: String,
+    val item: List<ChildItem>? = null,
+    val enableWhen: List<EnableWhen>? = null
+)
+
+@Serializable
+data class EnableWhen(
+    val question: String,
+    val operator: String,
+    val answerCoding: AnswerCoding? = null,
+    val answerString: String? = null,
+    val answerBoolean: Boolean? = null,
+    val answerDate: String? = null,
+    val answerInteger: Int?
+)
+
+@Serializable
+data class AnswerCoding(
+    val code: String,
+    val display: String?
 )
