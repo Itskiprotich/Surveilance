@@ -66,6 +66,7 @@ woodstox = "6.5.1"
 xerces = "2.12.2"
 xml-unit = "2.9.1"
 zxing = "3.4.1"
+roomKtx = "2.8.4"
 
 [libraries]
 accompanist-themeadapter-material3 = { module = "com.google.accompanist:accompanist-themeadapter-material3", version.ref = "accompanist-themeadapter-material3"}
@@ -162,6 +163,7 @@ woodstox = { module = "com.fasterxml.woodstox:woodstox-core", version.ref = "woo
 xerces = { module = "xerces:xercesImpl", version.ref = "xerces" }
 xml-unit = { module = "org.xmlunit:xmlunit-core", version.ref = "xml-unit" }
 zxing = { module = "com.google.zxing:core", version.ref = "zxing" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 
 [bundles]
 androidx-tracing = ["androidx-tracing-tracing", "androidx-tracing-tracing-android", "androidx-tracing-tracing-ktx"]

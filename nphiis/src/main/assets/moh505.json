@@ -1,15 +1,36 @@
 {
   "resourceType": "Questionnaire",
-  "meta": {
-    "profile": [
-      "http://hl7.org/fhir/4.0/StructureDefinition/Questionnaire"
-    ]
-  },
+  "status": "active",
+  "version": "0.0.1",
+  "publisher": "Kiprotich Japheth (jkiprotich@intellisoftkenya.com)",
+  "subjectType": [
+    "Encounter"
+  ],
   "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemExtractionContext",
+      "valueExpression": {
+        "language": "application/x-fhir-query",
+        "expression": "Encounter",
+        "name": "encounter"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-entryMode",
+      "valueCode": "prior-edit"
+    },
     {
       "url": "http://hl7.org/fhir/StructureDefinition/variable",
       "valueExpression": {
         "name": "countyName",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='294367770999').answer.value.reference"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "patientCountyName",
         "language": "text/fhirpath",
         "expression": "%resource.descendants().where(linkId='a4-county').answer.value.reference"
       }
@@ -17,9 +38,17 @@
     {
       "url": "http://hl7.org/fhir/StructureDefinition/variable",
       "valueExpression": {
-        "name": "selectedSubCountyName",
+        "name": "patientSubCountyName",
         "language": "text/fhirpath",
         "expression": "%resource.descendants().where(linkId='a3-sub-county').answer.value.reference"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "selectedSubCountyName",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='819946803642').answer.value.reference"
       }
     },
     {
@@ -29,13 +58,17 @@
         "language": "text/fhirpath",
         "expression": "%resource.descendants().where(linkId='819943434').answer.value.reference"
       }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "selectedFacilityName",
+        "language": "text/fhirpath",
+        "expression": "%resource.descendants().where(linkId='819943434').answer.value.reference"
+      }
     }
   ],
   "title": "MOH 505 - Health Facility Weekly Reporting Form",
-  "status": "draft",
-  "subjectType": [
-    "Encounter"
-  ],
   "item": [
     {
       "item": [
@@ -194,10 +227,6 @@
       ],
       "type": "group",
       "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
-          "valueBoolean": true
-        },
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
           "valueCodeableConcept": {

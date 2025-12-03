@@ -24,6 +24,7 @@
                   "label": "Add New Measles Case",
                   "questionnaire": "add-case.json",
                   "icon": "add",
+                  "case": "Measles Case Information",
                   "showIcon": true
                 },
                 {
@@ -31,6 +32,7 @@
                   "label": "Measles Case List",
                   "target": "cases",
                   "icon": "view",
+                  "case": "Measles Case Information",
                   "showIcon": true
                 }
               ]
@@ -44,8 +46,9 @@
                 {
                   "type": "add",
                   "label": "Add New AFP Case",
-                  "questionnaire": "screener-questionnaire.json",
+                  "questionnaire": "afp-case.json",
                   "icon": "add",
+                  "case": "AFP Case Information",
                   "showIcon": true
                 },
                 {
@@ -53,6 +56,7 @@
                   "label": "AFP Case List",
                   "target": "cases",
                   "icon": "view",
+                  "case": "AFP Case Information",
                   "showIcon": true
                 }
               ]
@@ -74,8 +78,9 @@
                 {
                   "type": "add",
                   "label": "Add New Record",
-                  "questionnaire": "moh_505_questionnaire.json",
+                  "questionnaire": "moh505.json",
                   "icon": "add",
+                  "case": "MOH 505 Reporting Form",
                   "showIcon": true
                 },
                 {
@@ -83,6 +88,7 @@
                   "label": "MoH 505 Case List",
                   "target": "reports",
                   "icon": "view",
+                  "case": "MOH 505 Reporting Form",
                   "showIcon": true
                 }
               ]

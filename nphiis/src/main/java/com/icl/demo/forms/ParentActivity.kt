@@ -33,9 +33,7 @@ class ParentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityParentBinding
     private val LOCATION_PERMISSION_REQUEST_CODE = 100
     private val viewModel: AddCaseViewModel by viewModels()
-    private fun getStringFromAssets(fileName: String): String {
-        return assets.open(fileName).bufferedReader().use { it.readText() }
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,11 +47,11 @@ class ParentActivity : AppCompatActivity() {
         supportActionBar?.apply {
             title = "$titleName"
         }
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+//        }
         updateArguments()
         if (savedInstanceState == null) {
             addQuestionnaireFragment()

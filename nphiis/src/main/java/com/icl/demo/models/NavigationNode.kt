@@ -31,6 +31,7 @@ data class ReportingAction(
     val label: String,
     val questionnaire: String? = null,
     val target: String? = null,
+    val case: String? = null,
     val comingSoon: Boolean = false,
     val icon: String? = null,          // we ignore this except for future use
     val showIcon: Boolean = false

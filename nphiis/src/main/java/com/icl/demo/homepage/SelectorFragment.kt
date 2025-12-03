@@ -200,10 +200,20 @@ class SelectorFragment : Fragment() {
     private fun handleAction(action: ReportingAction) {
         when (action.type) {
             "add" -> {
-                FormatterClass().saveSharedPref("AddParentTitle",action.label,requireContext())
+                FormatterClass().saveSharedPref("AddParentTitle", action.label, requireContext())
+                FormatterClass().saveSharedPref(
+                    "currentCase", "${action.case}", requireContext()
+                )
                 openQuestionnaire(action.questionnaire)
             }
-            "view" -> openCasesView(action)
+
+            "view" -> {
+                FormatterClass().saveSharedPref("listingTitle", action.label, requireContext())
+                FormatterClass().saveSharedPref(
+                    "currentCase", "${action.case}", requireContext()
+                )
+                openCasesView(action)
+            }
         }
     }
 

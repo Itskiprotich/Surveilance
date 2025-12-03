@@ -689,6 +689,14 @@
             {
               "url": "http://hl7.org/fhir/StructureDefinition/maxLength",
               "valueInteger": 10
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/regex",
+              "valueString": "^\\d{10,10}$"
+            },
+            {
+              "url": "http://ehelse.no/fhir/StructureDefinition/validationtext",
+              "valueString": "Please enter a valid phone number"
             }
           ],
           "item": [
