@@ -175,3 +175,14 @@ data class LocationInfo(
     val country: String?,
     val countryName: String?
 )
+
+data class QuestionnaireAnswer(
+    val linkId: String,
+    val text: String,
+    val answer: String
+)
+data class SpecimenConfig(
+    val type: String,
+    val entryLinkId: String,
+    val dateLinkId: String
+)

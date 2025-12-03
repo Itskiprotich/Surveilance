@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.icl.demo.R
+import com.icl.demo.models.QuestionnaireAnswer
 import com.icl.demo.utils.Constants.FIRST_LAUNCH_KEY
 import org.json.JSONArray
 import org.json.JSONObject
@@ -62,13 +63,6 @@ class FormatterClass {
 
     private fun prefs(context: Context): SharedPreferences =
         context.getSharedPreferences(PREFSNAME, Context.MODE_PRIVATE)
-
-    fun saveFacilityIds(context: Context, wardId: String, facilityIds: List<String>) {
-        val json = Gson().toJson(facilityIds)
-        prefs(context).edit()
-            .putString("$KEYPREFIX$wardId", json)
-            .apply()
-    }
 
     fun getFacilityIds(context: Context, wardId: String): List<String>? {
         val json = prefs(context).getString("$KEYPREFIX$wardId", null)
@@ -167,5 +161,145 @@ class FormatterClass {
             // default fallback — nothing dumb happens
             else -> 0
         }
+    }
+
+    fun saveFacilityIds(context: Context, wardId: String, facilityIds: List<String>) {
+        val json = Gson().toJson(facilityIds)
+        prefs(context).edit()
+            .putString("$KEYPREFIX$wardId", json)
+            .apply()
+    }
+
+    fun extractStructuredAnswersOnlyFromItems(json: JSONObject): List<QuestionnaireAnswer> {
+        val results = mutableListOf<QuestionnaireAnswer>()
+
+        fun processItems(items: JSONArray) {
+            for (i in 0 until items.length()) {
+                val item = items.getJSONObject(i)
+                val linkId = item.optString("linkId", "")
+                val text = item.optString("text", "")
+
+                if (item.has("answer")) {
+                    val answers = item.getJSONArray("answer")
+                    val valueList = mutableListOf<String>()
+
+                    for (j in 0 until answers.length()) {
+                        val answerObj = answers.getJSONObject(j)
+
+                        val value = when {
+                            answerObj.has("valueString") -> answerObj.getString("valueString")
+                            answerObj.has("valueInteger") -> answerObj.optString(
+                                "valueInteger",
+                                ""
+                            )
+
+                            answerObj.has("valueDate") -> answerObj.optString("valueDate", "")
+                            answerObj.has("valueDateTime") -> answerObj.optString(
+                                "valueDateTime", ""
+                            )
+
+                            answerObj.has("valueBoolean") -> answerObj.optString(
+                                "valueBoolean",
+                                ""
+                            )
+
+                            answerObj.has("valueDecimal") -> answerObj.optString(
+                                "valueDecimal",
+                                ""
+                            )
+
+                            answerObj.has("valueCoding") -> {
+                                val coding = answerObj.getJSONObject("valueCoding")
+                                coding.optString("display", coding.optString("code", ""))
+                            }
+
+                            answerObj.has("valueReference") -> {
+                                val ref = answerObj.getJSONObject("valueReference")
+                                ref.optString("display", ref.optString("reference", ""))
+                            }
+
+                            else -> null
+                        }
+
+                        if (!value.isNullOrBlank()) {
+                            valueList.add(value)
+                        }
+                    }
+
+                    if (valueList.isNotEmpty()) {
+                        // Join multiple values with comma
+                        results.add(
+                            QuestionnaireAnswer(
+                                linkId,
+                                text,
+                                valueList.joinToString(", ")
+                            )
+                        )
+                    }
+                }
+
+                if (item.has("item")) {
+                    processItems(item.getJSONArray("item"))
+                }
+            }
+        }
+
+        if (json.has("item")) {
+            processItems(json.getJSONArray("item"))
+        }
+
+        return results
+    }
+
+
+    fun generateInitials(source: String): String {
+        if (source.isEmpty()) return "XXX"
+
+        val customAbbreviations = mapOf(
+            "LOITOKITOK" to "LTK",
+        )
+
+        val words = source.trim().split("\\s+".toRegex())
+
+        // Single word case
+        if (words.size == 1) {
+            val word = words[0].uppercase()
+            return customAbbreviations[word] ?: word.take(3).padEnd(3, 'X')
+        }
+
+        // Multiple words - check for custom words
+        val customWordIndex = words.indexOfFirst { it.uppercase() in customAbbreviations }
+
+        return if (customWordIndex != -1) {
+            // We found a custom word - use its abbreviation
+            val customWord = words[customWordIndex]
+            val abbreviation = customAbbreviations[customWord.uppercase()]!!
+
+            // Combine abbreviation with other words
+            val otherWords = words.filterIndexed { index, _ -> index != customWordIndex }
+            buildWithCustomAbbreviation(abbreviation, otherWords)
+        } else {
+            // No custom words - use normal logic
+            buildNormalInitials(words)
+        }.uppercase()
+    }
+
+    private fun buildWithCustomAbbreviation(
+        abbreviation: String,
+        otherWords: List<String>
+    ): String {
+        return when {
+            otherWords.isEmpty() -> abbreviation.take(3)
+            otherWords.size == 1 -> (abbreviation.take(2) + otherWords[0].take(1)).take(3)
+            else -> (abbreviation.take(1) + otherWords[0].take(1) + otherWords[1].take(1)).take(3)
+        }.padEnd(3, 'X')
+    }
+
+    private fun buildNormalInitials(words: List<String>): String {
+        return when (words.size) {
+            1 -> words[0].take(3)
+            2 -> (words[0].take(2) + words[1].take(1))
+            else -> words.take(3).joinToString("") { it.first().toString() }
+        }.padEnd(3, 'X')
     }
 }

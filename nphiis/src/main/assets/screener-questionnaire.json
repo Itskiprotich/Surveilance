@@ -16,10 +16,10 @@
         "name": "encounter"
       }
     },
-      {
-        "url" : "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-entryMode",
-        "valueCode" : "prior-edit"
-      }
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-entryMode",
+      "valueCode": "prior-edit"
+    }
   ],
   "item": [
     {

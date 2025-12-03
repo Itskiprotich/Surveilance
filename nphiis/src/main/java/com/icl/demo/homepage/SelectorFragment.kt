@@ -15,12 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.icl.demo.R
+import com.icl.demo.databinding.FragmentSelectorBinding
 import com.icl.demo.forms.ParentActivity
 import com.icl.demo.models.LayoutMode
 import com.icl.demo.models.NavigationNode
 import com.icl.demo.models.ReportingAction
 import com.icl.demo.models.ReportingConfig
+import com.icl.demo.notifications.NotificationsActivity
 import com.icl.demo.utils.FormatterClass
+import com.icl.demo.views.CaseListingActivity
 import kotlinx.serialization.json.Json
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -51,22 +54,27 @@ class SelectorFragment : Fragment() {
     private val viewModel: ConfigNavigatorViewModel by viewModels()
     private var lastBackPressTime = 0L
     private val EXIT_INTERVAL = 2000L // 2 seconds
+    private lateinit var binding: FragmentSelectorBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_selector, container, false)
+        binding = FragmentSelectorBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        val recycler = view.findViewById<RecyclerView>(R.id.recycler)
+        binding.notificationIcon.apply {
+            setOnClickListener {
+                startActivity(Intent(requireContext(), NotificationsActivity::class.java))
+            }
+        }
 
         // Layout mode can come from config; fallback = linear
         val isGrid = shouldUseGridLayout()
-        recycler.layoutManager = if (isGrid) {
+        binding.recycler.layoutManager = if (isGrid) {
             GridLayoutManager(requireContext(), 2)
         } else {
             LinearLayoutManager(requireContext())
@@ -98,7 +106,7 @@ class SelectorFragment : Fragment() {
             factory = DefaultViewHolderFactory(layoutInflater = layoutInflater)
         )
 
-        recycler.adapter = adapter
+        binding.recycler.adapter = adapter
 
         viewModel.currentNodes.observe(viewLifecycleOwner) { nodes ->
             adapter.submit(nodes)
@@ -115,7 +123,7 @@ class SelectorFragment : Fragment() {
                 else -> LayoutMode.LINEAR
             }
 
-            applyLayoutMode(recycler, layoutMode)
+            applyLayoutMode(binding.recycler, layoutMode)
         }
 
         // Load config and start navigation
@@ -191,18 +199,22 @@ class SelectorFragment : Fragment() {
 
     private fun handleAction(action: ReportingAction) {
         when (action.type) {
-            "add" -> openQuestionnaire(action.questionnaire)
+            "add" -> {
+                FormatterClass().saveSharedPref("AddParentTitle",action.label,requireContext())
+                openQuestionnaire(action.questionnaire)
+            }
             "view" -> openCasesView(action)
         }
     }
 
     private fun openQuestionnaire(fileName: String?) {
         if (fileName == null) return
+        FormatterClass().saveSharedPref("questionnaire", fileName, requireContext())
         startActivity(Intent(requireContext(), ParentActivity::class.java))
     }
 
     private fun openCasesView(action: ReportingAction) {
-        // TODO: Launch case list UI
+        startActivity(Intent(requireContext(), CaseListingActivity::class.java))
     }
 
     private fun loadReportingConfig(): ReportingConfig {

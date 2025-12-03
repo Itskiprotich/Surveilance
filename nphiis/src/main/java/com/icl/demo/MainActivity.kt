@@ -24,19 +24,22 @@ import com.icl.demo.databinding.ActivityMainBinding
 const val MAX_RESOURCE_COUNT = 20
 
 class MainActivity : AppCompatActivity() {
-  private lateinit var binding: ActivityMainBinding
-  private val activityViewModel: ActivityViewModel by viewModels()
+    private lateinit var binding: ActivityMainBinding
+    private val activityViewModel: ActivityViewModel by viewModels()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityMainBinding.inflate(layoutInflater)
-    setContentView(binding.root)
-    initActionBar()
-    activityViewModel.createPatientsOnAppFirstLaunch()
-  }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initActionBar()
+        activityViewModel.createPatientsOnAppFirstLaunch()
+    }
 
-  private fun initActionBar() {
-    val toolbar = binding.toolbar
-    setSupportActionBar(toolbar)
-  }
+    private fun initActionBar() {
+        val toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar.apply {
+            title = ""
+        }
+    }
 }

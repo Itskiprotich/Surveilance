@@ -28,6 +28,7 @@ import com.google.android.fhir.datacapture.DataCaptureConfig
 import com.google.android.fhir.datacapture.XFhirQueryResolver
 import com.google.android.fhir.search.search
 import com.google.android.fhir.sync.remote.HttpLogger
+import com.icl.demo.location.ContribQuestionnaireItemViewHolderFactoryMatchersProviderFactory
 import com.icl.demo.utils.Constants.BASE_URL
 import timber.log.Timber
 
@@ -66,6 +67,8 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
         dataCaptureConfig =
             DataCaptureConfig().apply {
                 urlResolver = ReferenceUrlResolver(this@FhirApplication as Context)
+                questionnaireItemViewHolderFactoryMatchersProviderFactory =
+                    ContribQuestionnaireItemViewHolderFactoryMatchersProviderFactory
                 xFhirQueryResolver =
                     XFhirQueryResolver { it -> fhirEngine.search(it).map { it.resource } }
             }
