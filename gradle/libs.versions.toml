@@ -67,6 +67,7 @@ xerces = "2.12.2"
 xml-unit = "2.9.1"
 zxing = "3.4.1"
 roomKtx = "2.8.4"
+firebaseSessions = "3.0.3"
 
 [libraries]
 accompanist-themeadapter-material3 = { module = "com.google.accompanist:accompanist-themeadapter-material3", version.ref = "accompanist-themeadapter-material3"}
@@ -164,6 +165,7 @@ xerces = { module = "xerces:xercesImpl", version.ref = "xerces" }
 xml-unit = { module = "org.xmlunit:xmlunit-core", version.ref = "xml-unit" }
 zxing = { module = "com.google.zxing:core", version.ref = "zxing" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
+firebase-sessions = { group = "com.google.firebase", name = "firebase-sessions", version.ref = "firebaseSessions" }
 
 [bundles]
 androidx-tracing = ["androidx-tracing-tracing", "androidx-tracing-tracing-android", "androidx-tracing-tracing-ktx"]

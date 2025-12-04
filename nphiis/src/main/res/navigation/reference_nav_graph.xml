@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/home_fragment"
         android:name="com.icl.demo.homepage.SelectorFragment"
-        android:label="HomeFragment"
+        android:label=" "
         tools:layout="@layout/fragment_selector">
         <action
             android:id="@+id/action_home_fragment_to_patient_list"
@@ -94,4 +94,9 @@
         android:name="com.icl.demo.PeriodicSyncFragment"
         android:label="fragment_periodic_sync"
         tools:layout="@layout/periodic_sync" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.icl.demo.modules.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

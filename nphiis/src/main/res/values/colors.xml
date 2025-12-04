@@ -127,5 +127,7 @@
     <color name="snackbar_error">#F44336</color>   <!-- Red -->
     <color name="snackbar_text">#FFFFFF</color>    <!-- White -->
     <color name="snackbar_warning">#FF9800</color> <!-- Orange -->
+    <color name="nav_item_color">@color/purple_200</color> <!-- Orange -->
+<!--    <color name="snackbar_warning">#FF9800</color> &lt;!&ndash; Orange &ndash;&gt;-->
 
 </resources>

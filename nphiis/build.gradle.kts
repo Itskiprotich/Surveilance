@@ -43,6 +43,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.room.ktx)
+    implementation(libs.firebase.sessions)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.androidx.test.ext.junit)
 
@@ -81,5 +82,6 @@ dependencies {
     implementation("com.google.android.play:app-update-ktx:2.1.0")
     implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
+//    implementation("cn.pedant.sweetalert:library:1.3")
 
 }
